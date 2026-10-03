@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Watchtower</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070a14;--card:rgba(16,22,40,.72);--tx:#e6f1ff;--mu:#7f93b8;--ln:#1b2a4a;--ac:#00e5ff;--up:#00ff9c;--dn:#ff3d7f;--wn:#ffd000;--pk:#b44cff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:radial-gradient(900px 500px at 15% -10%,rgba(0,229,255,.16),transparent 60%),radial-gradient(800px 500px at 100% 0%,rgba(180,76,255,.18),transparent 55%),var(--bg);background-attachment:fixed;color:var(--tx);font:15px/1.45 'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace;min-height:100%}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(0,229,255,.05) 1px,transparent 1px) 0 0/100% 38px,linear-gradient(90deg,rgba(0,229,255,.05) 1px,transparent 1px) 0 0/38px 100%;mask-image:linear-gradient(#000,transparent 85%)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.18) 3px);opacity:.35}
+header{padding:16px 16px 6px;max-width:1200px;margin:auto;position:relative;z-index:1}
+h1{font:800 24px Orbitron,system-ui,sans-serif;margin:0;letter-spacing:2px;background:linear-gradient(90deg,var(--ac),var(--pk),var(--dn));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px rgba(0,229,255,.5))}
+h1:after{content:"_";color:var(--ac);-webkit-text-fill-color:var(--ac);animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+small,.mu{color:var(--mu)}
+#tk{overflow:hidden;white-space:nowrap;border-block:1px solid var(--ln);background:rgba(0,229,255,.05);position:relative;z-index:1;margin-top:6px}
+#tk div{display:inline-block;padding:6px 0;animation:mq 38s linear infinite}#tk span{margin-right:34px}@keyframes mq{to{transform:translateX(-50%)}}
+nav{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;position:sticky;top:env(safe-area-inset-top,0px);background:linear-gradient(var(--bg) 70%,transparent);z-index:3;max-width:1200px;margin:auto}
+button,select{font:inherit;color:var(--tx)}
+nav button,.sg button{border:1px solid var(--ln);background:rgba(10,16,32,.8);padding:8px 14px;border-radius:8px;white-space:nowrap;font-size:14px;cursor:pointer;transition:.18s;letter-spacing:.5px}
+nav button:hover,.sg button:hover{border-color:var(--ac);box-shadow:0 0 12px rgba(0,229,255,.4);transform:translateY(-1px)}
+nav button.on,.sg button.on{background:linear-gradient(135deg,rgba(0,229,255,.25),rgba(180,76,255,.3));color:#fff;border-color:var(--ac);box-shadow:0 0 14px rgba(0,229,255,.55),inset 0 0 10px rgba(0,229,255,.2)}
+main{padding:8px 16px 50px;max-width:1200px;margin:auto;display:grid;gap:12px;grid-template-columns:1fr;position:relative;z-index:1}
+@media(min-width:760px){main{grid-template-columns:1fr 1fr}.w{grid-column:1/-1}}
+@media(min-width:1100px){main.g3{grid-template-columns:1fr 1fr 1fr}}
+.c{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--ln);border-radius:12px;padding:13px;min-width:0;position:relative;transition:.2s;animation:in .5s both;box-shadow:0 0 0 1px rgba(0,229,255,.04),0 8px 28px rgba(0,0,0,.4)}
+.c:before{content:"";position:absolute;top:-1px;left:-1px;width:16px;height:16px;border-top:2px solid var(--ac);border-left:2px solid var(--ac);border-radius:12px 0 0 0}
+.c:after{content:"";position:absolute;bottom:-1px;right:-1px;width:16px;height:16px;border-bottom:2px solid var(--pk);border-right:2px solid var(--pk);border-radius:0 0 12px 0}
+main .c:hover{border-color:rgba(0,229,255,.5);box-shadow:0 0 22px rgba(0,229,255,.18)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.r{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.up{color:var(--up);text-shadow:0 0 8px rgba(0,255,156,.45)}.dn{color:var(--dn);text-shadow:0 0 8px rgba(255,61,127,.45)}
+.tag{font-size:11px;padding:2px 8px;border-radius:6px;border:1px solid var(--ln);color:var(--ac);background:rgba(0,229,255,.06);text-transform:uppercase;letter-spacing:.8px}
+select.tag{padding:7px 8px}
+.bar{height:8px;background:#0c1428;border:1px solid var(--ln);border-radius:5px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;box-shadow:0 0 12px currentColor;animation:gr 1s ease-out}@keyframes gr{from{width:0}}
+label.k{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--ln);cursor:pointer}label.k:last-child{border:0}label.k:hover{color:var(--ac)}
+input[type=checkbox]{accent-color:var(--dn);width:18px;height:18px}
+.note{font-size:12px;color:var(--mu);margin:2px 0 4px}.sg{display:flex;gap:6px;flex-wrap:wrap}.sg button{padding:5px 12px;font-size:13px}
+canvas{width:100%;height:340px;display:block}@media(min-width:760px){canvas{height:460px}}
+.big{font:800 30px Orbitron,system-ui,sans-serif;color:#fff;text-shadow:0 0 16px rgba(0,229,255,.6);margin:4px 0}
+b{font-weight:700}ul{margin:6px 0 0;padding-left:18px}
+#dot{animation:pl 1.6s infinite;box-shadow:0 0 10px currentColor}@keyframes pl{50%{transform:scale(1.6);opacity:.5}}
+#clk{font-family:Orbitron,sans-serif;font-size:12px;color:var(--ac)}
+</style></head><body>
+<header><div class="r"><h1>⚡ WATCHTOWER</h1><span id="clk"></span></div><small>// cyber-intel for crypto &amp; markets · live feed via data.json</small></header><div id="tk"><div id="tki"></div></div>
+<div id="rf" class="c" style="width:calc(100% - 32px);max-width:1168px;margin:6px auto;padding:8px 12px"><div class="r"><span><span id="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px"></span><b id="age"></b> <small id="asof"></small></span><span class="sg"><select id="iv" class="tag" title="Auto-refresh interval"><option value="0">Auto: off</option><option value="30">30s</option><option value="60" selected>1 min</option><option value="300">5 min</option></select><button id="now">⟳ Refresh</button></span></div><div class="note" id="msg" style="margin-top:4px"></div></div>
+<nav id="nav"></nav><main id="m"></main>
+<script>
+const F=(n,d=0)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}),$=id=>document.getElementById(id);
+let D=null,A={},ASOF=null,iv=60,left=60,lastChk='',err='',st={sym:'BTC',tf:1,s20:1,s50:1,tab:'Pulse'};
+const IC={Pulse:'📡',News:'📰',Chart:'🕯️',Social:'🛰️',Rumors:'👁️',Manipulation:'🚨'};
+const K=["Price up >50% in 24h with no real news","Wave of near-identical posts/shills","Promoters anonymous or brand-new accounts","Volume spike on tiny, low-liquidity market","Few wallets hold most of supply","'Guaranteed returns' or urgency","Big buys at odd hours then one huge sell","Unaudited contract or unlocked liquidity","Undisclosed paid influencer promo","Repeating round-number trade patterns (wash trading)"];
+const RUM=/(rumou?r|reportedly|sources? say|allegedly|speculat|unconfirmed|could |may |might |expected to|plans? to|in talks)/i;
+const sma=(c,n)=>c.map((_,i)=>i<n-1?null:c.slice(i-n+1,i+1).reduce((a,d)=>a+d.c,0)/n);
+function rsi(c,n=14){if(c.length<=n)return c.map(()=>null);let g=0,l=0;for(let i=1;i<=n;i++){const d=c[i].c-c[i-1].c;d>0?g+=d:l-=d}g/=n;l/=n;const o=Array(n).fill(null);o.push(100-100/(1+g/(l||1e-9)));for(let i=n+1;i<c.length;i++){const d=c[i].c-c[i-1].c;g=(g*(n-1)+Math.max(d,0))/n;l=(l*(n-1)+Math.max(-d,0))/n;o.push(100-100/(1+g/(l||1e-9)))}return o}
+const candles=()=>{const r=A[st.sym]&&A[st.sym].candles&&A[st.sym].candles[st.tf];return r?r.slice(-70).map(x=>({o:x[0],h:x[1],l:x[2],c:x[3],v:x[4]})):null};
+function draw(){const cv=$('cv');if(!cv)return;const c=candles();if(!c||c.length<20){$('study').innerHTML='<b>No candle data yet.</b><p class="note">Run the GitHub workflow once; candles appear after the first successful fetch.</p>';cv.style.display='none';return}cv.style.display='block';
+const dpr=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;const g=cv.getContext('2d');g.scale(dpr,dpr);
+const cs=getComputedStyle(document.documentElement),col=n=>cs.getPropertyValue(n).trim(),up=col('--up'),dn=col('--dn'),ln=col('--ln'),mu=col('--mu');
+const m20=sma(c,20),m50=sma(c,50),rs=rsi(c),pr=H*.62,vh=H*.14,rh=H*.16,L=8,R=58,bw=(W-L-R)/c.length;
+const mx=Math.max(...c.map(d=>d.h)),mn=Math.min(...c.map(d=>d.l)),Y=v=>8+(mx-v)/(mx-mn)*(pr-16),X=i=>L+i*bw+bw/2;
+g.font='11px "Share Tech Mono",monospace';g.fillStyle=mu;g.strokeStyle=ln;g.lineWidth=1;
+for(let i=0;i<=4;i++){const v=mn+(mx-mn)*i/4,y=Y(v);g.beginPath();g.moveTo(L,y);g.lineTo(W-R,y);g.stroke();g.fillText(F(v,st.sym=='BTC'?0:1),W-R+4,y+4)}
+const vm=Math.max(...c.map(d=>d.v))||1;
+c.forEach((d,i)=>{const u=d.c>=d.o,x=X(i);g.strokeStyle=g.fillStyle=u?up:dn;g.beginPath();g.moveTo(x,Y(d.h));g.lineTo(x,Y(d.l));g.stroke();g.fillRect(x-bw*.35,Y(Math.max(d.o,d.c)),bw*.7,Math.max(1,Math.abs(Y(d.o)-Y(d.c))));g.globalAlpha=.4;g.fillRect(x-bw*.35,pr+vh-d.v/vm*(vh-4)+8,bw*.7,d.v/vm*(vh-4));g.globalAlpha=1});
+const line=(a,cl)=>{g.strokeStyle=cl;g.lineWidth=1.6;g.beginPath();let s=0;a.forEach((v,i)=>{if(v==null)return;s?g.lineTo(X(i),Y(v)):g.moveTo(X(i),Y(v));s=1});g.stroke()};
+if(st.s20)line(m20,'#ffd000');if(st.s50)line(m50,'#b44cff');
+const ry=pr+vh+22,rY=v=>ry+(100-v)/100*(rh-6);g.lineWidth=1;g.strokeStyle=ln;[30,70].forEach(v=>{g.beginPath();g.moveTo(L,rY(v));g.lineTo(W-R,rY(v));g.stroke();g.fillStyle=mu;g.fillText(v,W-R+4,rY(v)+4)});
+g.strokeStyle=col('--ac');g.lineWidth=1.5;g.beginPath();let s=0;rs.forEach((v,i)=>{if(v==null)return;s?g.lineTo(X(i),rY(v)):g.moveTo(X(i),rY(v));s=1});g.stroke();g.fillStyle=mu;g.fillText('RSI 14',L,ry-2);g.fillText('Volume',L,pr+16);
+const last=c[c.length-1],r=rs[rs.length-1],m=m20[c.length-1],m5=m50[c.length-1],hi=Math.max(...c.slice(-30).map(d=>d.h)),lo=Math.min(...c.slice(-30).map(d=>d.l));
+const tr=m>m5?['Uptrend (SMA20 above SMA50)','up']:['Downtrend (SMA20 below SMA50)','dn'],rr=r>70?'Overbought: pullback risk':r<30?'Oversold: bounce possible':'Neutral momentum';
+$('study').innerHTML=`<b>Market study: ${st.sym}, ${st.tf==24?'1d':st.tf+'h'} candles (real exchange data)</b><ul><li>Trend: <b class="${tr[1]}">${tr[0]}</b></li><li>RSI ${r.toFixed(0)}: ${rr}</li><li>Resistance ≈ $${F(hi)} · support ≈ $${F(lo)}</li><li>Last close ${last.c>m?'above':'below'} SMA20</li></ul><p class="note">Not financial advice.</p>`}
+const age=d=>{const m=(Date.now()-new Date(d))/6e4;return isNaN(m)?'':m<60?Math.round(m)+'m ago':m<1440?Math.round(m/60)+'h ago':Math.round(m/1440)+'d ago'};
+const T={Pulse:()=>{let o=Object.entries(A).map(([k,v])=>`<div class="c"><div class="r"><b>${k}</b><small>${v.n}</small></div><div class="big">$${F(v.p)}</div><div class="r"><span class="${v.ch>=0?'up':'dn'}">${v.ch>0?'+':''}${v.ch}% 24h</span><small>$${F(v.lo)}–$${F(v.hi)}</small></div></div>`).join('');const gl=D.global,f=D.fng;
+o+=`<div class="c"><b>Market</b>${gl?`<div class="r"><span>Total cap</span><b>$${(gl.cap/1e12).toFixed(2)}T</b></div><div class="r"><span>BTC dominance</span><b>${gl.dom}%</b></div>`:''}${f?`<div class="r"><span>Fear &amp; Greed</span><b class="${f.value>=55?'up':f.value<=45?'dn':''}">${f.value} ${f.label}</b></div>`:''}</div>`;
+o+=`<div class="c w"><b>Stocks</b>${D.stocks&&D.stocks.length?D.stocks.map(s=>`<div class="r"><span>${s.sym}</span><span>$${F(s.p,2)}</span><b class="${s.ch>=0?'up':'dn'}">${s.ch>0?'+':''}${s.ch}%</b></div>`).join(''):'<p class="mu">Add a free FINNHUB_KEY secret in GitHub to enable stock quotes.</p>'}</div>`;return o},
+News:()=>(D.news&&D.news.length?D.news.map(n=>`<div class="c"><span class="tag">${n.src}</span> <span class="tag">${age(n.date)}</span><div style="margin-top:6px"><a href="${n.link}" target="_blank" rel="noopener" style="color:var(--tx)">${n.title}</a></div></div>`).join(''):'<div class="c w mu">No headlines yet. They appear after the first workflow run.</div>'),
+Chart:()=>`<div class="c w"><div class="r"><div class="sg">${Object.keys(A).map(k=>`<button class="${k==st.sym?'on':''}" data-s="${k}">${k}</button>`).join('')}</div><div class="sg">${[1,6,24].map(t=>`<button class="${t==st.tf?'on':''}" data-t="${t}">${t==24?'1d':t+'h'}</button>`).join('')}</div><div class="sg"><button class="${st.s20?'on':''}" data-m="s20">SMA20</button><button class="${st.s50?'on':''}" data-m="s50">SMA50</button></div></div><canvas id="cv"></canvas></div><div class="c w" id="study"></div>`,
+Social:()=>{const f=D.fng,b=A.BTC,gl=D.global,cd=candles(),vo=cd?Math.min(100,Math.round(cd.slice(-24).reduce((a,d)=>a+(d.h-d.l)/d.c,0)/24*100*20)):null;
+const G=[f&&['Fear & Greed',f.value,f.value>=55?'var(--up)':f.value<=45?'var(--dn)':'var(--wn)',f.label+'. Extreme greed often precedes pullbacks.'],gl&&['BTC dominance %',gl.dom,'var(--ac)','Falling dominance usually favors altcoins.'],b&&['BTC 24h momentum',Math.max(0,Math.min(100,50+b.ch*5)),b.ch>=0?'var(--up)':'var(--dn)',(b.ch>0?'+':'')+b.ch+'% over 24h'],vo!=null&&['Volatility (recent candles)',vo,'var(--wn)','Wider candles = riskier conditions.']].filter(Boolean);
+return `<div class="c w note">Computed from market data. Twitter/X isn't included because its API is paid.</div>`+G.map(s=>`<div class="c"><div class="r"><b>${s[0]}</b><b>${s[1]}</b></div><div class="bar"><i style="width:${s[1]}%;background:${s[2]}"></i></div><small>${s[3]}</small></div>`).join('')},
+Rumors:()=>{const r=(D.news||[]).filter(n=>RUM.test(n.title));return `<div class="c w note">Headlines containing speculative wording ("reportedly", "could", "sources say"...). Treat as unconfirmed until a primary source backs them.</div>`+(r.length?r.map(n=>`<div class="c"><span class="tag" style="color:var(--wn)">Unconfirmed</span> <span class="tag">${n.src}</span><div style="margin-top:6px"><a href="${n.link}" target="_blank" rel="noopener" style="color:var(--tx)">${n.title}</a></div></div>`).join(''):'<div class="c w mu">No speculative headlines right now.</div>')},
+Manipulation:()=>`<div class="c"><b>Pump-and-dump checker</b><p class="note">Tick every red flag you see on a coin or stock.</p><div id="ck">${K.map(k=>`<label class="k"><input type="checkbox"> <span>${k}</span></label>`).join('')}</div></div><div class="c" id="res" style="align-self:start;position:sticky;top:60px"></div>`};
+const nav=$('nav'),m=$('m');
+function go(t){st.tab=t;nav.innerHTML=Object.keys(T).map(k=>`<button class="${k==t?'on':''}" onclick="go('${k}')">${IC[k]} ${k}</button>`).join('');if(!D){m.innerHTML='<div class="c w mu">Loading data…</div>';return}m.className=t=='Pulse'?'g3':'';m.innerHTML=T[t]();
+if(t=='Manipulation'){document.querySelectorAll('#ck input').forEach(i=>i.onchange=score);score()}
+m.onclick=t=='Chart'?e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.s)st.sym=b.dataset.s;if(b.dataset.t)st.tf=+b.dataset.t;if(b.dataset.m)st[b.dataset.m]^=1;go('Chart')}:null;if(t=='Chart')draw()}
+function score(){const n=document.querySelectorAll('#ck input:checked').length,l=n<3?['Low risk','var(--up)']:n<6?['Elevated: be careful','var(--wn)']:['High: likely manipulation','var(--dn)'];$('res').innerHTML=`<div class="r"><b style="color:${l[1]}">${l[0]}</b><b>${n}/10</b></div><div class="bar"><i style="width:${n*10}%;background:${l[1]}"></i></div><small>Not financial advice.</small>`}
+function ticker(){if(!D)return;const it=Object.entries(A).map(([k,v])=>`<span>◈ ${k} <b>$${F(v.p)}</b> <b class="${v.ch>=0?'up':'dn'}">${v.ch>=0?'▲':'▼'}${Math.abs(v.ch)}%</b></span>`).join('')+(D.global?`<span>◈ CAP <b>$${(D.global.cap/1e12).toFixed(2)}T</b></span><span>◈ BTC.D <b>${D.global.dom}%</b></span>`:'')+(D.fng?`<span>◈ F&amp;G <b>${D.fng.value} ${D.fng.label}</b></span>`:'');$('tki').innerHTML=it+it}
+function status(){const dot=$('dot');if(!ASOF||isNaN(ASOF)){$('age').textContent='Loading…';return}const ms=Math.max(0,Date.now()-ASOF),mm=Math.floor(ms/6e4),h=ms/36e5,lv=h<.5?['Live','var(--up)']:h<3?['Delayed','var(--wn)']:['Stale','var(--dn)'];dot.style.background=lv[1];dot.style.color=lv[1];$('age').textContent=`${lv[0]} · updated ${age(ASOF)}`;$('asof').textContent=ASOF.toLocaleString([],{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+let t=iv?`Next check in ${left}s. `:'Auto-refresh off. ';if(err)t+=err+' ';else if(D&&D.errors&&D.errors.length)t+='Some sources failed on the last run; showing last good values. ';if(h>=3)t+='Check that the GitHub workflow is still running.';$('msg').textContent=t}
+async function load(){try{const r=await fetch('data.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(r.status);D=await r.json();ASOF=new Date(D.asOf);A=D.assets||{};err=''}catch(e){err='Could not load data.json ('+e.message+').'}
+lastChk=1;left=iv;ticker();if(D){const y=scrollY;if(st.tab=='Chart')draw();else if(st.tab!='Manipulation'||!m.innerHTML)go(st.tab);else{}scrollTo(0,y);if(!m.innerHTML.trim()||m.textContent.startsWith('Loading'))go(st.tab)}status()}
+$('iv').onchange=e=>{iv=+e.target.value;left=iv;status()};$('now').onclick=load;
+setInterval(()=>{if(document.hidden)return;if(iv&&--left<=0)load();else status()},1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){status();if(iv)load()}});
+addEventListener('resize',draw);
+(function(){const t=()=>$('clk').textContent=new Date().toLocaleTimeString([],{hour12:false})+' LOCAL';t();setInterval(t,1000)})();
+go('Pulse');load();
+</script></body></html>

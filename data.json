@@ -1,0 +1,1 @@
+{"asOf":"2026-10-02T14:00:00Z","assets":{"BTC":{"n":"Bitcoin","p":86500,"ch":2.0,"hi":87075,"lo":83993},"ETH":{"n":"Ethereum","p":2740,"ch":1.3,"hi":2760,"lo":2600}},"global":{"cap":2990000000000,"dom":56.9},"fng":{"value":72,"label":"Greed"},"news":[],"errors":["seed file: waiting for first workflow run"]}

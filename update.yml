@@ -1,0 +1,24 @@
+name: Update Watchtower data
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # every 5 minutes (GitHub's minimum)
+  workflow_dispatch: {}      # lets you run it manually
+permissions:
+  contents: write
+concurrency: watchtower
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/fetch.mjs
+        env:
+          FINNHUB_KEY: ${{ secrets.FINNHUB_KEY }}   # optional, enables stocks
+      - name: Commit if changed
+        run: |
+          git config user.name "watchtower-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || (git commit -m "data update" && git push)
